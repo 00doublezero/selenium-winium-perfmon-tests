@@ -1,6 +1,7 @@
 import helpers.DriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,19 +11,25 @@ import java.net.MalformedURLException;
 
 public class perfmonWiniumTests {
     private WebDriver driver;
-    private PerfmonWindow
+    private PerfmonWindow pwin;
 
     @BeforeTest
     public void initWinium() throws MalformedURLException {
         driver = DriverProvider.getDriver("C://windows//system32//perfmon.msc",
                 "9999",
-                1000);
+                7000);
 
     }
 
-    @Test
-    public void closeWindow() {
-        driver.findElement(By.id("Close")).click();
+    @Test(description="Launch the perfmon", priority=1)
+    public void openPerfmon() {
+        Assert.assertTrue(pwin.perfmonIsDisplayed(),"The window was not displayed.");
+    }
+    @Test(description="Maximize the window", priority=2)
+    public void maximizeWindow() {
+        String maximizeTooltipText = "Restore";
+        pwin.maximizeRestoreToggle();
+        Assert.assertEquals(pwin.windowIsMaximized(),true,"The window was not maximized.");
     }
 
     @AfterTest
