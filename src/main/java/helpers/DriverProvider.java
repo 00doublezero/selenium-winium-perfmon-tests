@@ -17,7 +17,7 @@ public class DriverProvider {
     	if (driver == null) {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("app",appPath);
-            cap.setCapability("launchDelay",100);
+            cap.setCapability("launchDelay",5000);
             //cap.setCapability("args":"");
             driver = new RemoteWebDriver(new URL("http://localhost:" + port), cap);
             return driver;

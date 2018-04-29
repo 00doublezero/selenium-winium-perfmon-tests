@@ -20,22 +20,29 @@ public class perfmonWiniumTests {
                 7000);
 
     }
-
     @Test(description="Launch the perfmon", priority=1)
     public void openPerfmon() {
+        pwin = new PerfmonWindow(driver);
         Assert.assertTrue(pwin.perfmonIsDisplayed(),"The window was not displayed.");
     }
+
     @Test(description="Maximize the window", priority=2)
-    public void maximizeWindow() {
-        String maximizeTooltipText = "Restore";
+    public void maximizeWindow() throws InterruptedException {
+        //String maximizeTooltipText = "Restore";
         pwin.maximizeRestoreToggle();
+        //Thread.sleep(2000);
         Assert.assertEquals(pwin.windowIsMaximized(),true,"The window was not maximized.");
     }
 
-    @AfterTest
+    @Test(priority=6)
+    public void closeWindow() {
+        pwin.close();
+    }
+
+    /*@AfterTest
     public void closeWimium() {
         driver.quit();
-    }
+    }*/
 }
 
 /*import org.openqa.selenium.By;
