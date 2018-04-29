@@ -27,11 +27,18 @@ public class perfmonWiniumTests {
     }
 
     @Test(description="Maximize the window", priority=2)
-    public void maximizeWindow() throws InterruptedException {
+    public void maximizeWindow() {
         //String maximizeTooltipText = "Restore";
         pwin.maximizeRestoreToggle();
         //Thread.sleep(2000);
         Assert.assertEquals(pwin.windowIsMaximized(),true,"The window was not maximized.");
+    }
+
+    @Test(description = "Open system monitor page", priority=3)
+    public void openSysMon() throws InterruptedException {
+        pwin.sysmonTreeItemClick();
+        Thread.sleep(2000);
+        Assert.assertTrue(pwin.perfmonWinIsDisplayed(),"The performance monitor was not displayed.");
     }
 
     @Test(priority=6)

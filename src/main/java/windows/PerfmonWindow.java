@@ -19,6 +19,16 @@ public class PerfmonWindow extends AbstractWindow {
 
     @FindBy(xpath = "//*[@ClassName = 'MMCMainFrame']/*[@LocalizedControlType = 'title bar']/*[@Name = 'Restore']")
     private WebElement restoreButton;
+    
+    @FindBy(xpath = "//*[@ClassName = 'MMCMainFrame']//*[@Name = 'Performance']//*[@Name='Performance Monitor']")
+    private WebElement perfmonTreeItem;
+
+    @FindBy(xpath = "//*[@ClassName = 'MMCMainFrame']//*[@ClassName = 'Hatchwin']/*[@ClassName = 'SysmonCtrl']/*[@ClassName = 'ToolbarWindow32']")
+    private WebElement perfmonSysWindow;
+
+    public void sysmonTreeItemClick() {
+        perfmonTreeItem.click();
+    }
 
     public boolean perfmonIsDisplayed() {
         return closeButton.isDisplayed();
@@ -29,16 +39,11 @@ public class PerfmonWindow extends AbstractWindow {
     }
 
     public boolean windowIsMaximized() {
-        //boolean result;
-        //boolean maximizeButtonTitleText =  driver.findElement(By.xpath("//*[@ClassName = 'MMCMainFrame']/*[@LocalizedControlType = 'title bar']/*[@Name = 'Restore']")).isDisplayed();
         try { return restoreButton.isDisplayed();} catch(NoSuchElementException e) {return false;}
+    }
 
-        /*if (maximizeButtonTitleText) {
-            result = true;
-        } else {
-            result = false;
-        }
-        return result;*/
+    public boolean perfmonWinIsDisplayed() {
+        try { return perfmonSysWindow.isDisplayed();} catch(NoSuchElementException e) {return false;}   
     }
 
     public void close() {
