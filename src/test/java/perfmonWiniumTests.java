@@ -51,16 +51,15 @@ public class perfmonWiniumTests {
         Assert.assertTrue(pmon.counterCounters("% Processor Time") == 0,"Counter \"% Processor Time\" was not delete from counter Legend.");
     }
 
-    @Test(description = "Add disk counter to legend",priority = 5)
-    public void addDiskCounter() throws InterruptedException {
+    @Test(description = "Add disk counter to legend map",priority = 5)
+    public void addDiskCounter() {
         pmon.openCountersWindow();
         addCountWin = new AddCountersWindow(driver);
         Assert.assertTrue(addCountWin.AddCountersModalIsDisplayed(),"Modal is not displayed");
-        //addCountWin.closeMoadl();
-        Thread.sleep(5000);
-        while(true) {
-            addCountWin.scrollToPhysicalDiskCounterItem();
-        }
+        Assert.assertTrue(addCountWin.scrollToPhysicalDiskCounterItem(), "Can not find wanted counter");
+        addCountWin.physicalDiskClick();
+        addCountWin.selectWriteByteSecCounter();
+        Assert.assertTrue(pmon.counterCounters("Disk Write Bytes/sec") == 1,"Counter \"Disk Write Bytes/sec\" was not present on the legend map.");
     }
 
     @Test(priority=6)

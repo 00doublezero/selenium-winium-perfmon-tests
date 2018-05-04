@@ -2,9 +2,7 @@ package windows;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.winium.WiniumDriver;
 
 import java.util.List;
@@ -35,20 +33,24 @@ public class PerformanceMonitor extends AbstractPerfmonWindow  {
 
     public void deleteCounters(String counterName) throws InterruptedException {
     	for (WebElement perfCounter: perfCounters) {
-    	    //сделать нормальнj
     		perfCounter.findElement(By.xpath("//*[@Name='"+ counterName +"']")).click();
             counterDeleteButton.click();
     	}
     }
     public int counterCounters(String counterName) {
         int i = 0;
+        //perfCounters
         for (WebElement perfCounter: perfCounters) {
-            if (perfCounter.findElement(By.xpath("//*[@Name]")).getAttribute("Name").equals(counterName)) {
-                i++;
+            try {
+                if (perfCounter.findElement(By.xpath("//*[@Name='" + counterName + "']")).isEnabled()) {
+                    i++;
+                }
+            } catch (NoSuchElementException e) {
+
             }
             //perfCounter.findElement(By.xpath("//*[@Name='"+ counterName +"']")).click();
         }
-        System.out.println(i);
+        //System.out.println(i);
         return i;
     }
 }
