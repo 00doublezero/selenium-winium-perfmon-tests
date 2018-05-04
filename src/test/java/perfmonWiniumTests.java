@@ -62,9 +62,10 @@ public class perfmonWiniumTests {
         Assert.assertTrue(pmon.counterCounters("Disk Write Bytes/sec") == 1,"Counter \"Disk Write Bytes/sec\" was not present on the legend map.");
     }
 
-    @Test(priority=6)
+    @Test(description= "Close Window",priority=6)
     public void closeWindow() {
         pwin.close();
+        Assert.assertFalse(pwin.windowIsEnebled(), "Main window is still on desktop");
     }
 
     @AfterTest

@@ -14,8 +14,7 @@ public class PerfmonWindow extends AbstractPerfmonWindow {
     /*@FindBy(xpath = "//*[@ClassName = 'MMCMainFrame']/*[@LocalizedControlType = 'title bar']/*[@Name = 'Close']")
     private WebElement closeButton;*/
     private WebElement closeButton = perfmonMain.findElement(By.xpath("//*[@LocalizedControlType = 'title bar']/*[@Name = 'Close']"));
-    //private WebElement asdas = driver.
-    
+
     /*@FindBy(xpath = "//*[@ClassName = 'MMCMainFrame']/*[@LocalizedControlType = 'title bar']/*[@Name = 'Maximize']")
     private WebElement maximizeButton;*/
 
@@ -53,7 +52,11 @@ public class PerfmonWindow extends AbstractPerfmonWindow {
     }
 
     public boolean perfmonWinIsDisplayed() {
-        try { return perfmonSysWindow.isDisplayed();} catch(NoSuchElementException e) {return false;}   
+        try { return perfmonSysWindow.isDisplayed();} catch(NoSuchElementException e) {return false;}
+    }
+
+    public boolean windowIsEnebled() {
+        try { return perfmonMain.isDisplayed(); } catch(NoSuchElementException e) {return false;}
     }
 
     public void close() {
