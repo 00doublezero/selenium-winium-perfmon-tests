@@ -31,21 +31,18 @@ public class perfmonWiniumTests {
 
     @Test(description="Maximize the window", priority=2)
     public void maximizeWindow() {
-        //String maximizeTooltipText = "Restore";
         pwin.maximizeRestoreToggle();
-        //Thread.sleep(2000);
         Assert.assertEquals(pwin.windowIsMaximized(),true,"The window was not maximized.");
     }
 
     @Test(description = "Open system monitor page", priority=3)
-    public void openSysMon() throws InterruptedException {
+    public void openSysMon() {
         pwin.sysmonTreeItemClick();
-        //Thread.sleep(2000);
         Assert.assertTrue(pwin.perfmonWinIsDisplayed(),"The performance monitor was not displayed.");
     }
 
     @Test(description = "Delete processor time counter", priority=4)
-    public void processorTimeDelete() throws InterruptedException {
+    public void processorTimeDelete() {
         pmon = new PerformanceMonitor(driver);
         pmon.deleteCounters("% Processor Time");
         Assert.assertTrue(pmon.counterCounters("% Processor Time") == 0,"Counter \"% Processor Time\" was not delete from counter Legend.");

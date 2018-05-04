@@ -1,7 +1,6 @@
 package windows;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +34,7 @@ public class AddCountersWindow extends AbstractPerfmonWindow {
     private WebElement addToWatchListButton = AddCountersModalWindow.findElement(By.xpath("//*[@AutomationId = '1014']"));
     private WebElement addCountersModalWindowOkButton = AddCountersModalWindow.findElement(By.xpath("//*[@AutomationId = '1']"));
 
-    public void closeMoadl(){
+    public void closeModal(){
         closeModalButton.click();
     }
 
@@ -58,7 +57,6 @@ public class AddCountersWindow extends AbstractPerfmonWindow {
     }
     public void physicalDiskClick() {
         action.doubleClick(scrollEndPoint).perform();
-        //scrollEndPoint.click();
     }
 
     public void selectWriteByteSecCounter() {

@@ -9,7 +9,4 @@ public class AbstractPerfmonWindow extends AbstractWindow {
     }
 
     protected WebElement perfmonMain = driver.findElementByClassName("MMCMainFrame");
-    //protected WebElement perfmonMain = driver.
-
-    //protected WebElemet asdad = driver.
 }

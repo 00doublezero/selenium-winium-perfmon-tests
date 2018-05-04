@@ -31,7 +31,7 @@ public class PerformanceMonitor extends AbstractPerfmonWindow  {
         counterAddButton.click();
     }
 
-    public void deleteCounters(String counterName) throws InterruptedException {
+    public void deleteCounters(String counterName)  {
     	for (WebElement perfCounter: perfCounters) {
     		perfCounter.findElement(By.xpath("//*[@Name='"+ counterName +"']")).click();
             counterDeleteButton.click();
@@ -39,7 +39,6 @@ public class PerformanceMonitor extends AbstractPerfmonWindow  {
     }
     public int counterCounters(String counterName) {
         int i = 0;
-        //perfCounters
         for (WebElement perfCounter: perfCounters) {
             try {
                 if (perfCounter.findElement(By.xpath("//*[@Name='" + counterName + "']")).isEnabled()) {
@@ -48,9 +47,7 @@ public class PerformanceMonitor extends AbstractPerfmonWindow  {
             } catch (NoSuchElementException e) {
 
             }
-            //perfCounter.findElement(By.xpath("//*[@Name='"+ counterName +"']")).click();
         }
-        //System.out.println(i);
         return i;
     }
 }
