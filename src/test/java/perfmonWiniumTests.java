@@ -16,6 +16,9 @@ public class perfmonWiniumTests {
     private PerfmonWindow pwin;
     private PerformanceMonitor pmon;
     private AddCountersWindow addCountWin;
+
+    private String cpuCounterString = "% Processor Time";
+    private String hddCounterString = "Disk Write Bytes/sec";
     @BeforeTest
     public void initWinium() throws MalformedURLException {
         driver = DriverProvider.getDriver("C://windows//system32//perfmon.msc",
@@ -44,8 +47,8 @@ public class perfmonWiniumTests {
     @Test(description = "Delete processor time counter", priority=4)
     public void processorTimeDelete() {
         pmon = new PerformanceMonitor(driver);
-        pmon.deleteCounters("% Processor Time");
-        Assert.assertTrue(pmon.counterCounters("% Processor Time") == 0,"Counter \"% Processor Time\" was not delete from counter Legend.");
+        pmon.deleteCounters(cpuCounterString);
+        Assert.assertTrue(pmon.counterCounters(cpuCounterString) == 0,"Counter \"% Processor Time\" was not delete from counter Legend.");
     }
 
     @Test(description = "Add disk counter to legend map",priority = 5)
@@ -56,7 +59,7 @@ public class perfmonWiniumTests {
         Assert.assertTrue(addCountWin.scrollToPhysicalDiskCounterItem(), "Can not find wanted counter");
         addCountWin.physicalDiskClick();
         addCountWin.selectWriteByteSecCounter();
-        Assert.assertTrue(pmon.counterCounters("Disk Write Bytes/sec") == 1,"Counter \"Disk Write Bytes/sec\" was not present on the legend map.");
+        Assert.assertTrue(pmon.counterCounters(hddCounterString) == 1,"Counter \"Disk Write Bytes/sec\" was not present on the legend map.");
     }
 
     @Test(description= "Close Window",priority=6)
